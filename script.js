@@ -34,7 +34,7 @@ function pwdOptions() {
   let numbers = confirm("Include Numbers? Y/N ");
   console.log(numbers);
   
-  let special = con("Include Special Characters? Y/N ");
+  let special = confirm("Include Special Characters? Y/N ");
   console.log(special);
 
   var passwordOptions = {
