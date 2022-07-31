@@ -1,114 +1,180 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input
+generateBtn.addEventListener('click', writePassword);
+
 function writePassword() {
   var password = generatePassword();
-  document.getElementById("password").innerHTML = password;
+  var passwordText = document.querySelector('#password');
+
+  passwordText.value = password;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+function pwdOptions() {
+    var length = parseInt(
+      prompt('How many characters (8-128)?'),
+      10
+    );
 
-function generatePassword() {
-  let pwdLength = prompt("Desired password length ( 8-128 characters)?");
-  console.log(pwdLength);
+    if (length <= 8) {
+      alert('Password length must be at least 8 characters');
+      return null;
+    } 
   
-  let letters = prompt("Include Capital Letters? Y/N ");
+    if (length >= 128) {
+      alert('Password length must less than 129 characters');
+      return null;
+    }
+
+  let lowerletters = confirm("Include lowercase Letters? Y/N ");
+  console.log(lowerletters);
+  
+  let letters = confirm("Include capital Letters? Y/N ");
   console.log(letters);
 
-  let numbers = prompt("Include Numbers? Y/N ");
+  let numbers = confirm("Include Numbers? Y/N ");
   console.log(numbers);
   
-  let special = prompt("Include Special Characters? Y/N ");
+  let special = con("Include Special Characters? Y/N ");
   console.log(special);
 
-  letters = letters.toUpperCase();
-  numbers = numbers.toUpperCase();
-  special = special.toUpperCase();
+  var passwordOptions = {
+    length: length,
+    special: special,
+    numbers: numbers,
+    lowerletters: lowerletters,
+    letters: letters,
+  };
 
-  var password1         = '';
-  var characters1       = 'abcdefghijklmnopqrstuvwxyz'
-  var characters2       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  var characters3       = '0123456789'
-  var characters4       = "!@#$%^&*()"
-
-  var charactersLength = characters1.concat(characters2, characters3, characters4);
-
-  if ( letters === "Y" & numbers === "Y" & special === "Y") {
-    for ( var i = 0; i < pwdLength; i++ ) {
-    password1 += charactersLength.charAt(Math.floor(Math.random() * charactersLength.length));}
-      } else { 
-      }
-  
-  if ( letters === "Y" & numbers === "Y" & special === "N") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.concat(characters2, characters3).charAt(Math.floor(Math.random() * charactersLength.length));
-        }
-      } else{    
-      }
-
- if ( letters === "Y" & numbers === "N" & special === "N") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.concat(characters2).charAt(Math.floor(Math.random() * charactersLength.length));
-         }
-      } else{    
-      }
-    
-  if ( letters === "Y" & numbers === "N" & special === "Y") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.concat(characters2, characters4).charAt(Math.floor(Math.random() * charactersLength.length));
-          }
-      } else{    
-      }
-     
-  if ( letters === "N" & numbers === "N" & special === "N") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.charAt(Math.floor(Math.random() * charactersLength.length));
-          }
-      } else{    
-      }   
-
-  if ( letters === "N" & numbers === "Y" & special === "N") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.concat(characters3).charAt(Math.floor(Math.random() * charactersLength.length));
-          }
-      } else{    
-      }
-
-  if ( letters === "N" & numbers === "N" & special === "Y") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.concat(characters4).charAt(Math.floor(Math.random() * charactersLength.length));
-          }
-      } else{    
-      }
-
-  if ( letters === "N" & numbers === "Y" & special === "Y") {
-    for (var i = 0; i < pwdLength; i++) {
-      password1 += characters1.concat(characters3, characters4).charAt(Math.floor(Math.random() * charactersLength.length));
-          }
-      } else{    
-      }
-
-console.log(password1);
-return password1;
+  return passwordOptions;
 }
 
-//psuedoCode
-//prompt = length
-  // let pwdLength = prompt("How many characters");
-    //console.log(pwdLength);
-//confirm - lowercase, uppercase, numeric, special characters
-  // let numbers = confirm("Do you want numbers");
-      //console.log(numbers);
-//create var to hold answer to prompt/confirm
-//function to validate user answers
-//if and equality operators
-  // if(numbers){
-  // }
-  // list of numbers, special chars, uppercase, lowercase
-    //array
-    // combine all arrays in 1 array
-//generate random password
-//return password
-  
+var specialCharacters = [
+  '@',
+  '%',
+  '+',
+  '/',
+  "'",
+  '!',
+  '#',
+  '$',
+  '^',
+  '?',
+  ':',
+  ',',
+  ')',
+  '(',
+  '}',
+  '{',
+  ']',
+  '[',
+  '~',
+  '-',
+  '_',
+  '.',
+];
+
+var numberCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+var lowerCasedCharacters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+];
+
+var upperCasedCharacters = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+];
+
+function getRandom(arr) {
+  var randIndex = Math.floor(Math.random() * arr.length);
+  var randElement = arr[randIndex];
+
+  return randElement;
+}
+
+function generatePassword() {
+  var options = pwdOptions();
+  var result = [];
+  var possibleCharacters = [];
+  var guaranteedCharacters = [];
+
+  if (options.special) {
+    possibleCharacters = possibleCharacters.concat(specialCharacters);
+    guaranteedCharacters.push(getRandom(specialCharacters));
+  }
+
+  if (options.numbers) {
+    possibleCharacters = possibleCharacters.concat(numberCharacters);
+    guaranteedCharacters.push(getRandom(numberCharacters));
+  }
+
+  if (options.lowerletters) {
+    possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+    guaranteedCharacters.push(getRandom(lowerCasedCharacters));
+  }
+
+  if (options.letters) {
+    possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+    guaranteedCharacters.push(getRandom(upperCasedCharacters));
+  }
+
+  for (var i = 0; i < options.length; i++) {
+    var possibleCharacter = getRandom(possibleCharacters);
+
+    result.push(possibleCharacter);
+  }
+
+  for (var i = 0; i < guaranteedCharacters.length; i++) {
+    result[i] = guaranteedCharacters[i];
+  }
+
+  return result.join('');
+}
